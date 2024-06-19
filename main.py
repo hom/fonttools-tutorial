@@ -31,13 +31,14 @@ def glyph_to_svg(font_path, character, output_svg_path):
     # 获取 SVG 路径数据
     svg_path_data = pen.getCommands()
 
+    svg = f"""
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" transform="scale(1, -1)">
+        <path d="{svg_path_data}" stroke="red" fill="none" />
+    </svg>"""
+
     # 创建 SVG 文件并写入路径数据
     with open(output_svg_path, "w") as svg_file:
-        svg_file.write(
-            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {glyph.width} 2000">'
-        )
-        svg_file.write(f'<path d="{svg_path_data}" stroke="red" fill="none" />')
-        svg_file.write("</svg>")
+        svg_file.write(svg)
 
 
 # 示例调用
