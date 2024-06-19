@@ -6,13 +6,18 @@ from fontTools.pens.svgPathPen import SVGPathPen
 dirname = pathlib.Path(os.getcwd(), "fonts")
 
 
-def glyph_to_svg(font_path, glyph_name, output_svg_path):
+def glyph_to_svg(font_path, character, output_svg_path):
     # 打开字体文件
     font = TTFont(font_path)
 
     # 获取 'glyf' 表
     glyf_table = font.get("glyf")
     glyph_set = font.getGlyphSet()
+
+    # 获取unicode编码
+    unicode_code_point = ord(character)
+    # 获取glyf表的字形名称
+    glyph_name = font.getBestCmap().get(unicode_code_point, None)
 
     # 检查字符是否存在
     if glyph_name not in glyf_table.glyphs:
@@ -36,4 +41,4 @@ def glyph_to_svg(font_path, glyph_name, output_svg_path):
 
 
 # 示例调用
-glyph_to_svg(dirname / "Monaco.ttf", "A", "output.svg")
+glyph_to_svg(dirname / "simsun.ttf", "孟", "output.svg")
