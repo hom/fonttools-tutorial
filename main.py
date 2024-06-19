@@ -32,8 +32,8 @@ def glyph_to_svg(font_path, character, output_svg_path):
     svg_path_data = pen.getCommands()
 
     svg = f"""
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" transform="scale(1, -1)">
-        <path d="{svg_path_data}" stroke="red" fill="none" />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+        <path d="{svg_path_data}" stroke="red" fill="none" transform="scale(1, -1)" />
     </svg>"""
 
     # 创建 SVG 文件并写入路径数据
